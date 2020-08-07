@@ -8,7 +8,6 @@ from sklearn import preprocessing
 
 #reading the dataset
 df=pd.read_excel('titanic.xls')
-#print(df.head())
 #dropping the body and name column because they are irrelevant (all too varrying)
 df.drop(['body', 'name'], 1, inplace=True)
 #filling empty cells with 0
