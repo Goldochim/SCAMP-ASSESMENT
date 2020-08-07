@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import metrics, preprocessing
 import matplotlib.pyplot as plt
@@ -42,13 +40,15 @@ def handle_non_numerical_data (df):
 df=handle_non_numerical_data(df)
 
 
-
+#drpping the survived column to have other values combined as x
+#preprocessing the dataset and creating the y values as the entire survived column
+#splitting the dataset to 80%(train), 20%(test)
 x=np.array(df.drop(['survived'], 1))
 x=preprocessing.scale(x)
 y=np.array(df['survived'])
 x_train, x_test, y_train, y_test=train_test_split(x,y,test_size=0.2)
 
-
+#applying the svm algorithm 
 clf=SVC(gamma='auto')
 clf=clf.fit(x_train, y_train)
 accuracy=clf.score(x_test, y_test)
